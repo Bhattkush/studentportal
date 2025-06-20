@@ -1,0 +1,51 @@
+{% extends "base.html" %}{% block title %}Register{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <form method="POST" class="card p-4 shadow-sm">
+      <h3 class="text-center mb-3 text-primary">Create Account</h3>
+
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input name="name" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input name="email" type="email" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input name="password" type="password" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Role</label>
+        <select name="role" id="role" class="form-select" onchange="toggleID(this.value)">
+          <option value="student">Student</option>
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+
+      <div class="mb-3 d-none" id="sid-row">
+        <label class="form-label">Student Identifier</label>
+        <input name="student_identifier" class="form-control">
+      </div>
+
+      <button class="btn btn-primary w-100">Register</button>
+      <p class="text-center mt-3 mb-0">Already have an account?
+        <a href="/login">Login</a>
+      </p>
+    </form>
+  </div>
+</div>
+
+<script>
+function toggleID(role){
+  document.getElementById('sid-row').classList.toggle('d-none', role!=='student');
+}
+toggleID(document.getElementById('role').value);
+</script>
+{% endblock %}

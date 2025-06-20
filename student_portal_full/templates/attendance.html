@@ -1,0 +1,33 @@
+{% extends "base.html" %}{% block title %}Mark Attendance{% endblock %}
+{% block content %}
+<h2 class="text-center text-primary my-4">Mark Attendance – {{ selected_date }}</h2>
+
+<form method="POST">
+  <div class="table-responsive shadow rounded border">
+    <table class="table table-hover align-middle text-center mb-0">
+      <thead class="table-dark"><tr><th>#</th><th>Name</th><th>Status</th></tr></thead>
+      <tbody>
+        {% for stu in students %}
+        <tr>
+          <td>{{ loop.index }}</td>
+          <td>{{ stu.name }}</td>
+          <td>
+            <label class="me-3">
+              <input type="radio" name="attendance_{{stu.id}}" value="present"
+                     {% if existing.get(stu.id)=='present' %}checked{% endif %} required> Present
+            </label>
+            <label>
+              <input type="radio" name="attendance_{{stu.id}}" value="absent"
+                     {% if existing.get(stu.id)=='absent' %}checked{% endif %}> Absent
+            </label>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="text-end mt-3">
+    <button class="btn btn-success px-4">Submit</button>
+  </div>
+</form>
+{% endblock %}

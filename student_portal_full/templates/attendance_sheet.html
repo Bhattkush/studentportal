@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-5">
+  <div class="text-center mb-4">
+    <h2 class="fw-bold text-primary">
+      📋 Attendance Sheet
+    </h2>
+    <p class="text-muted">View daily attendance records</p>
+  </div>
+
+  {% if rows %}
+  <div class="table-responsive rounded shadow-sm">
+    <table class="table table-bordered table-hover align-middle text-center">
+      <thead class="table-primary">
+        <tr>
+          <th scope="col">📅 Date</th>
+          <th scope="col">👤 Name</th>
+          <th scope="col">📧 Email</th>
+          <th scope="col">✅ Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for r in rows %}
+        <tr>
+          <td>{{ r.date.strftime('%d-%b-%Y') }}</td>
+          <td>{{ r.student_name }}</td>
+          <td class="text-break">{{ r.email }}</td>
+          <td>
+            {% if r.status == 'present' %}
+              <span class="badge bg-success rounded-pill px-3 py-2 shadow-sm">✔ Present</span>
+            {% else %}
+              <span class="badge bg-danger rounded-pill px-3 py-2 shadow-sm">✘ Absent</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% else %}
+  <div class="alert alert-warning text-center mt-4">
+    No attendance records found.
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+

@@ -1,0 +1,143 @@
+/* ─── Font and Body ─────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── Navbar ─────────────────────────── */
+.navbar {
+  background-color: #0d6efd;
+  padding: 1rem 2rem;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  border-radius: 0 0 12px 12px;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+/* ─── Card Hover Effect ─────────────────────────── */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 1rem;
+}
+
+.card:hover {
+  transform: scale(1.015);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ─── Button Styles ─────────────────────────── */
+.btn {
+  border-radius: 8px !important;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+}
+
+.btn-outline-secondary:hover {
+  background-color: #e2e6ea;
+}
+
+/* ─── Table ─────────────────────────── */
+.table {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.table th {
+  background-color: #0d6efd !important;
+  color: white;
+  vertical-align: middle;
+}
+
+.table td,
+.table th {
+  text-align: center;
+}
+
+/* ─── Flash Messages ─────────────────────────── */
+.alert {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  font-size: 1rem;
+}
+
+/* ─── Form Styles ─────────────────────────── */
+form input,
+form select {
+  border-radius: 0.5rem !important;
+}
+
+form label {
+  font-weight: 500;
+}
+
+/* ─── Responsive Fixes ─────────────────────────── */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar a {
+    margin: 0.5rem 0;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+body {
+  background: #f8fafc;
+  font-family: 'Inter', sans-serif;
+}
+
+.table thead {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.table tbody tr:hover {
+  background-color: #e9f5ff;
+}
+
+.btn-success {
+  background-color: #198754;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #157347;
+}
+
+
+body { font-family: 'Inter', sans-serif; }
+
+.card { border-radius: 1rem; }
+
+.table-hover tbody tr:hover { background:#eef2ff; }
+
+.btn-primary { background:#4f46e5;border:none; }
+.btn-primary:hover { background:#4338ca; }
+

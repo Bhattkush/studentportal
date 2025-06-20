@@ -1,0 +1,45 @@
+{% extends "base.html" %}{% block title %}Materials{% endblock %}
+{% block content %}
+<h2 class="text-primary mb-4 text-center"><i class="bi bi-journal-text"></i> Study Materials</h2>
+
+{% if role in ['teacher','admin'] %}
+  <div class="text-end mb-3">
+    <a href="/materials/upload" class="btn btn-primary"><i class="bi bi-upload"></i> Upload</a>
+  </div>
+{% endif %}
+
+<div class="table-responsive shadow-sm rounded-4 border">
+  <table class="table table-hover align-middle text-nowrap mb-0">
+    <thead class="table-primary text-center">
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>File</th>
+        <th>Uploaded By</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for m in mats %}
+      <tr>
+        <td>{{ m.title }}</td>
+        <td>{{ m.description or '-' }}</td>
+        <td>{{ m.filename }}</td>
+        <td>{{ m.uploader or '—' }}</td>
+        <td class="text-center">
+          <div class="d-flex flex-wrap justify-content-center gap-2">
+            <a class="btn btn-sm btn-outline-success" href="/materials/{{m.id}}/view"><i class="bi bi-eye"></i></a>
+            <a class="btn btn-sm btn-outline-secondary" href="/materials/{{m.id}}/download"><i class="bi bi-download"></i></a>
+            {% if role in ['teacher','admin'] %}
+              <form action="/materials/{{m.id}}/delete" method="post" onsubmit="return confirm('Delete this file?');">
+                <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+              </form>
+            {% endif %}
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

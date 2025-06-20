@@ -1,0 +1,30 @@
+{% extends "base.html" %}{% block title %}Attendance History{% endblock %}
+{% block content %}
+<h2 class="text-center text-primary my-4">Attendance History</h2>
+
+<div class="table-responsive shadow rounded border">
+  <table class="table table-bordered table-hover text-center align-middle">
+    <thead class="table-light">
+      <tr>
+        {% if role != 'student' %}<th>Student</th>{% endif %}
+        <th>Date</th><th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for r in records %}
+      <tr>
+        {% if role != 'student' %}<td>{{ r.name }}</td>{% endif %}
+        <td>{{ r.date }}</td>
+        <td>
+          {% if r.status=='present' %}
+            <span class="badge bg-success">Present</span>
+          {% else %}
+            <span class="badge bg-danger">Absent</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

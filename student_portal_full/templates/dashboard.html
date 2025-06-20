@@ -1,0 +1,37 @@
+{% extends "base.html" %}{% block title %}Dashboard{% endblock %}
+{% block content %}
+<h2 class="mb-4 text-primary">Welcome, {{ name }}!</h2>
+
+<div class="row g-3">
+  <div class="col-sm-6 col-lg-4">
+    <a href="/materials" class="card shadow-sm text-center text-decoration-none h-100">
+      <div class="card-body">
+        <i class="bi bi-journal-text fs-2 text-primary"></i>
+        <h5 class="mt-2">Study Materials</h5>
+      </div>
+    </a>
+  </div>
+
+  <div class="col-sm-6 col-lg-4">
+    <a href="/attendance-history" class="card shadow-sm text-center text-decoration-none h-100">
+      <div class="card-body">
+        <i class="bi bi-clipboard-check fs-2 text-primary"></i>
+        <h5 class="mt-2">
+          {% if role=='student' %}My{% else %}All{% endif %} Attendance
+        </h5>
+      </div>
+    </a>
+  </div>
+
+  {% if role in ['teacher','admin'] %}
+  <div class="col-sm-6 col-lg-4">
+    <a href="/mark-attendance" class="card shadow-sm text-center text-decoration-none h-100">
+      <div class="card-body">
+        <i class="bi bi-person-check fs-2 text-primary"></i>
+        <h5 class="mt-2">Mark Today</h5>
+      </div>
+    </a>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}
