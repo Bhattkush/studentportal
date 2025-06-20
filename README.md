@@ -18,7 +18,7 @@ A responsive and user-friendly Student Portal that allows registration/login, at
 ## Tech Stack
 
 - **Backend:** Flask, Python, MySQL
-- **Frontend:** HTML, Bootstrap-like CSS, Jinja2
+- **Frontend:** HTML, Bootstrap-like CSS
 - **Database:** MySQL
 - **Styling:** Custom responsive CSS
 
