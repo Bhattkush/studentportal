@@ -25,6 +25,7 @@ A responsive and user-friendly Student Portal that allows registration/login, at
 ---
 
 ## Run Locally
+python app.py
 
 ### 1. Clone the repo
 ```bash
