@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Gallery</h2>
+
+    {% if images %}
+    <div class="row">
+        {% for img in images %}
+        <div class="col-md-3 mb-4">
+            <div class="card shadow-sm">
+                <img src="{{ url_for('static', filename='uploads/gallery/' ~ img) }}" class="card-img-top" alt="Gallery Image">
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="text-center text-muted">No images uploaded yet.</p>
+    {% endif %}
+
+    {% if session.get('role') in ['admin', 'teacher'] %}
+    <hr>
+    <h4>Upload New Image</h4>
+    <form method="POST" action="{{ url_for('upload_gallery') }}" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input type="file" name="image" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Upload</button>
+    </form>
+    {% endif %}
+</div>
+{% endblock %}

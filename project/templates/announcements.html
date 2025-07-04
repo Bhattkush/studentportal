@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Announcements{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-primary">📢 Announcements</h2>
+    <ul class="list-group mt-4">
+        {% for ann in announcements %}
+        <li class="list-group-item">
+            <strong>{{ ann[1] }}</strong><br>
+            <small class="text-muted">{{ ann[3] }}</small><br>
+            {{ ann[2] }}
+        </li>
+        {% endfor %}
+        {% if announcements|length == 0 %}
+        <li class="list-group-item text-muted">No announcements found.</li>
+        {% endif %}
+    </ul>
+</div>
+{% endblock %}

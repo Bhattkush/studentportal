@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register - Student Portal</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(to top, #a1c4fd, #c2e9fb);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-box {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .mountains {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(to top, #6b8e23, transparent);
+            clip-path: polygon(0 100%, 20% 70%, 40% 90%, 60% 60%, 80% 85%, 100% 50%, 100% 100%);
+            z-index: 0;
+        }
+    </style>
+
+    <script>
+        function toggleStandardField() {
+            const role = document.getElementById("role").value;
+            const standardDiv = document.getElementById("standardDiv");
+            if (role === "student") {
+                standardDiv.style.display = "block";
+            } else {
+                standardDiv.style.display = "none";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="register-box">
+        <h2>Register</h2>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div style="color: green; text-align:center;">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+
+            <div id="standardDiv">
+                <select name="standard" id="standard">
+                    <option value="">Select Class</option>
+                    {% for i in range(1, 13) %}
+                        <option value="{{ i }}">Class {{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <select name="role" id="role" required onchange="toggleStandardField()">
+                <option value="">Select Role</option>
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+            </select>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <div class="mountains"></div>
+
+    <script>
+        // Hide standard by default until role is selected
+        toggleStandardField();
+    </script>
+</body>
+</html>

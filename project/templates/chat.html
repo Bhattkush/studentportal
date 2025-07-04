@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Chat with Counselor{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Chat / Contact Counselor</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label>Name:</label>
+            <input type="text" name="name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Message:</label>
+            <textarea name="message" class="form-control" rows="5" required></textarea>
+        </div>
+        <button class="btn btn-primary">Send</button>
+    </form>
+</div>
+{% endblock %}

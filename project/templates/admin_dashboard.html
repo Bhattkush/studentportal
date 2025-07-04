@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-primary">Admin Dashboard</h2>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="{{ url_for('manage_announcements') }}">📢 Manage Announcements</a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{ url_for('manage_faqs') }}">❓ Manage FAQs</a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{ url_for('manage_gallery') }}">🖼️ Manage Gallery</a>
+        </li>
+        <li class="list-group-item">
+            <a href="{{ url_for('admin_chat') }}">💬 View Chat Messages</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

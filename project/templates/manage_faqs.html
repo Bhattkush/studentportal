@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-primary">Manage FAQs</h2>
+    <form method="POST">
+        <input name="question" class="form-control my-2" placeholder="Question">
+        <textarea name="answer" class="form-control my-2" placeholder="Answer"></textarea>
+        <button class="btn btn-success">Add FAQ</button>
+    </form>
+    <hr>
+    <ul class="list-group">
+        {% for f in faqs %}
+        <li class="list-group-item d-flex justify-content-between">
+            <span>{{ f[1] }}</span>
+            <form method="POST" action="{{ url_for('delete_faq', id=f[0]) }}">
+                <button class="btn btn-sm btn-danger">Delete</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

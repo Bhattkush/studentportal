@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <!-- Welcome Message -->
+    <div class="card shadow mb-4 bg-white">
+        <div class="card-body">
+            <h3 class="card-title">Welcome, {{ session['name'] }} 👋</h3>
+            <p class="card-text">
+                You are logged in as <strong>{{ session['role']|capitalize }}</strong>
+                {% if session.get('standard') %}
+                    in <strong>Class {{ session['standard'] }}</strong>
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <!-- Inspirational Quote -->
+    <div class="quote-box alert alert-warning">
+        <strong>“Education is the most powerful weapon which you can use to change the world.”</strong>
+    </div>
+
+    <!-- Dashboard Cards -->
+    <div class="row text-center g-4 mb-4">
+        <div class="col-md-3">
+            <a href="/materials" class="text-decoration-none text-dark">
+                <div class="card shadow p-3">
+                    <h5>📚 Study Materials</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/attendance" class="text-decoration-none text-dark">
+                <div class="card shadow p-3">
+                    <h5>📅 Attendance</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/assignments" class="text-decoration-none text-dark">
+                <div class="card shadow p-3">
+                    <h5>📝 Assignments</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/gallery" class="text-decoration-none text-dark">
+                <div class="card shadow p-3">
+                    <h5>🖼️ Gallery</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Optional: More Dashboard Links -->
+    <div class="row text-center g-4 mb-5">
+        <div class="col-md-3">
+            <a href="/scores" class="text-decoration-none text-dark">
+                <div class="card shadow p-3">
+                    <h5>📊 Scores</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/profile" class="text-decoration-none text-dark">
+                <div class="card shadow p-3">
+                    <h5>👤 Profile</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/announcements" class="text-decoration-none text-dark">
+                <div class="card shadow p-3">
+                    <h5>📢 Announcements</h5>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/logout" class="text-decoration-none text-white">
+                <div class="card shadow p-3 bg-danger">
+                    <h5>🚪 Logout</h5>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Announcements -->
+    <div class="mb-5">
+        <h4 class="mb-3">📢 Latest Announcements</h4>
+        <ul class="list-group">
+            {% if notices %}
+                {% for n in notices %}
+                    <li class="list-group-item d-flex justify-content-between">
+                        {{ n.message }}
+                        <span class="text-muted small">{{ n.date_posted }}</span>
+                    </li>
+                {% endfor %}
+            {% else %}
+                <li class="list-group-item text-muted">No announcements available.</li>
+            {% endif %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

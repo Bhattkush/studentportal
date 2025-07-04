@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block title %}Assignments - Standard {{ standard }}{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background-color: #f4f7fc;
+    }
+    .card {
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .upload-form {
+        background-color: #eaf4ff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+    .btn-custom {
+        background-color: #007bff;
+        color: white;
+    }
+    .btn-custom:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="container mt-4">
+    <h2 class="mb-4 text-primary text-center">Assignments for Standard {{ standard }}</h2>
+
+    {% if session['role'] in ['admin', 'teacher'] %}
+    <div class="upload-form mb-4">
+        <form action="{{ url_for('upload_assignment', standard=standard) }}" method="POST" enctype="multipart/form-data">
+            <div class="row g-3 align-items-center">
+                <div class="col-md-4">
+                    <input type="text" name="title" placeholder="Assignment Title" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <input type="file" name="file" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-custom w-100">Upload Assignment</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+
+    {% if assignments %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for assignment in assignments %}
+        <div class="col">
+            <div class="card p-3">
+                <h5>{{ assignment[1] }}</h5>
+                <p class="text-muted">Uploaded on: {{ assignment[4] }}</p>
+                <a href="{{ url_for('static', filename='uploads/assignments/' ~ assignment[2]) }}" class="btn btn-sm btn-success" download>Download</a>
+                {% if session['role'] in ['admin', 'teacher'] %}
+                <a href="{{ url_for('delete_assignment', id=assignment[0], standard=standard) }}" class="btn btn-sm btn-danger">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div class="alert alert-info mt-4">No assignments found for this standard.</div>
+    {% endif %}
+</div>
+{% endblock %}

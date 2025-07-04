@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Student Messages{% endblock %}
+
+{% block content %}
+<div class="container my-5">
+    <h2 class="text-primary">Student Messages</h2>
+    <ul class="list-group">
+        {% for msg in messages %}
+        <li class="list-group-item">
+            <strong>{{ msg[1] }}</strong> ({{ msg[3] }})<br>
+            {{ msg[2] }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

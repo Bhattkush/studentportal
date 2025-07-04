@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Assignments - Select Standard{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: #f8f9fa;
+    }
+    .folder-card {
+        background: #fff;
+        border: 2px solid #007bff;
+        border-radius: 10px;
+        text-align: center;
+        padding: 30px 10px;
+        transition: all 0.3s;
+    }
+    .folder-card:hover {
+        background: #007bff;
+        color: #fff;
+        transform: scale(1.05);
+    }
+    a.folder-link {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
+
+<div class="container">
+    <h2 class="text-primary text-center mb-4">📂 Select Standard to View Assignments</h2>
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        {% for std in standards %}
+        <div class="col">
+            <a href="{{ url_for('assignments_by_standard', standard=std) }}" class="folder-link">
+                <div class="folder-card">
+                    <h4>Standard {{ std }}</h4>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
